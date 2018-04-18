@@ -22,22 +22,22 @@ function get_csrf_token() {
   }
 }
 
-function set_overlay(text, color) {
-  var overlay = jQuery('<div id="overlay" style="color: ' + color + '">' + text +'</div>');
+function set_overlay(text, color, id) {
+  var overlay = jQuery('<div id="overlay-'+id+'" class="overlay" style="color: ' + color + '">' + text +'</div>');
   overlay.appendTo(document.body);
   return overlay;
 }
 
-function remove_overlay() {
-  $('#overlay').remove();
+function remove_overlay(id) {
+  $('#overlay-'+id).remove();
 }
 
 function load_game() {
-  set_overlay('Loading board...', 'gray');
+  set_overlay('Loading board...', 'gray', 'load');
   $.getJSON(BASE_API_URL)
     .done(function(data) {
       render_board(data);
-      remove_overlay();
+      remove_overlay('load');
     });
 }
 
@@ -45,14 +45,14 @@ function field_click(ev) {
   var $el = $(ev.target);
   var data = $el.attr('id').split('-');
   var overlay_timeout = setTimeout(function() {
-    set_overlay('Loading board...', 'gray')
+    set_overlay('Loading board...', 'gray', 'load')
   }, 500);
   $.post(BASE_API_URL + 'reveal/',
     {x: data[1], y: data[2], csrfmiddlewaretoken: get_csrf_token()}
   ).done(function(data) {
     clearTimeout(overlay_timeout);
     render_board(data);
-    remove_overlay();
+    remove_overlay('load');
   })
 }
 
@@ -107,7 +107,7 @@ function render_board(data) {
         text = 'You Won'
         color = "green";
       }
-      var overlay = set_overlay(text, color);
+      var overlay = set_overlay(text, color, 'finished');
   }
 }
 
