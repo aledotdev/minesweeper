@@ -25,7 +25,7 @@ SECRET_KEY = 'r*6ex+$xa)106e0fgywu*gu*1q)ces$by8w5xi22ph*ij#en(v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -90,11 +90,11 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd70qaosibj2jaa',
-        'USER': 'ehpgvevwoccvtl',
-        'PASSWORD': '76e28c11d70e77584909e14e6ee6c894afe0a2b08b745ce88420b7141ea59bb1',
-        'HOST': 'ec2-107-22-173-160.compute-1.amazonaws.com',
-        'PORT': '',
+        'NAME': 'dd678lh5u4j032',
+        'USER': 'cmfjcqaoygcpdk',
+        'PASSWORD': '030d0a110a136c893f5c6837f6405d079a4482b0ae899cb623c1d6ffadc8a335',
+        'HOST': 'ec2-54-221-192-231.compute-1.amazonaws.com',
+        'PORT': 5432,
     }
 }
 
@@ -136,3 +136,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
