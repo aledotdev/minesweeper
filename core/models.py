@@ -15,7 +15,7 @@ NEIGHBORS = [
 
 class Game(models.Model):
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    start_date = models.DateTimeField(auto_now=True)
+    start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField(blank=True, null=True)
     won = models.BooleanField(default=False)
     width = models.PositiveIntegerField(validators=[MaxValueValidator(128)])
@@ -157,6 +157,12 @@ class Game(models.Model):
             return "Won"
         else:
             return "Lost"
+
+    def time(self):
+        if self.end_date is None:
+            return ''
+        delta = self.end_date - self.start_date
+        return int(delta.total_seconds() / 60)
 
 
 class Cell(models.Model):

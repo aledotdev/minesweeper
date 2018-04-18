@@ -44,10 +44,13 @@ function load_game() {
 function field_click(ev) {
   var $el = $(ev.target);
   var data = $el.attr('id').split('-');
-  set_overlay('Loading board...', 'gray')
+  var overlay_timeout = setTimeout(function() {
+    set_overlay('Loading board...', 'gray')
+  }, 500);
   $.post(BASE_API_URL + 'reveal/',
     {x: data[1], y: data[2], csrfmiddlewaretoken: get_csrf_token()}
   ).done(function(data) {
+    clearTimeout(overlay_timeout);
     render_board(data);
     remove_overlay();
   })
