@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Minesweeper</title>
+
+    <style>
+      #board-table {
+        width: auto;
+      }
+      #board-table td {
+        border: none;
+        padding: 3px;
+        margin: 0;
+        width: 25px;
+        height: 25px;
+        background-color: #CCCCCC;
+        border: 4px solid #D9D9D9;
+      }
+
+      #board-table td.btn-revealed {
+        background-color: #EEEEEE;
+      }
+
+      #board-table td.btn-hide {
+        background-color: #CCCCCC;
+      }
+
+      #board-table tr {
+        border: none;
+        padding: 0;
+        margin: 0;
+        font-size: 0.7em;
+      }
+
+      #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000;
+        filter:alpha(opacity=50);
+        -moz-opacity:0.5;
+        -khtml-opacity: 0.5;
+        opacity: 0.5;
+        z-index: 10000;
+        padding: 10% 30%;
+        font-size: 5em;
+        font-weight: bold;
+      }
+    </style>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			  crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="container">
+      <a href='/game/'><h2>Game List</h2></a> <a href='/game/new/'><h2>New game</h2></a>
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>

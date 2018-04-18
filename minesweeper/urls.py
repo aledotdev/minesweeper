@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from core.views import game_view
+from core.views import game_view, game_list_view, NewGameView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('core.api_urls')),
+    path('game/', game_list_view),
+    path('game/new/', NewGameView.as_view()),
     path('game/<int:game_id>/', game_view)
 ]

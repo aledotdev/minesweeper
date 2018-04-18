@@ -148,6 +148,16 @@ class Game(models.Model):
     def get_cell_value(self, is_mine, neighbors_mines):
         return -1 if is_mine else neighbors_mines
 
+    @property
+    def status(self):
+        if self.end_date is None:
+            return "In Game"
+
+        if self.won:
+            return "Won"
+        else:
+            return "Lost"
+
 
 class Cell(models.Model):
     game = models.ForeignKey('Game', on_delete=models.CASCADE, related_name='cells')
